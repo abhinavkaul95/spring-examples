@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+<bean id="invBean" class="com.training.domains.Invoice"
+	p:invoiceNumber="23562" p:amount="2500.00" autowire="byName" destroy-method="cleanup" 
+init-method="init" >
+
+<property name="itemList">
+<list value-type="com.training.domains.Item">
+<ref bean="itemBean1" />
+<ref bean="itemBean2" />
+<ref bean="itemBean3" />
+<ref bean="itemBean4" />
+</list>
+</property>	
+</bean>
+
+<bean id="customer" class="com.training.domains.Customer"
+	p:customerId="23562" p:customerName="Ramesh" p:phoneNumber="+91964652563" autowire="byName" />
+
+<bean id="itemBean1" class="com.training.domains.Item" c:itemId="465413" c:itemName="Item 1" c:ratePerUnit="25"/>
+<bean id="itemBean2" class="com.training.domains.Item" c:itemId="465414" c:itemName="Item 2" c:ratePerUnit="35"/>
+<bean id="itemBean3" class="com.training.domains.Item" c:itemId="465415" c:itemName="Item 3" c:ratePerUnit="45"/>
+<bean id="itemBean4" class="com.training.domains.Item" c:itemId="465416" c:itemName="Item 4" c:ratePerUnit="55"/>
+
+<bean id="address" class="com.training.domains.Address" c:addressLineOne="Address Line 1" c:addressLineTwo="Address Line 2" c:city="City" c:state="State" c:country="Country"/>
+
+</beans>
